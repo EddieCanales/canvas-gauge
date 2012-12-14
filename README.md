@@ -1,6 +1,3 @@
-canvas-gauge
-============
-
 # Canvas Gauge v0.1
 
 An HTML5 Canvas gauge with glow and animation.
