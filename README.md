@@ -1,13 +1,13 @@
 canvas-gauge
 ============
 
-= Canvas Gauge v0.1
+# Canvas Gauge v0.1
 
 An HTML5 Canvas gauge with glow and animation.
 
 http://www.fabledweb.com/html5-canvas-gauge.html
 
-== Usage
+## Usage
 
 ```javascript
 //get the canvas element that you want the gauge drawn on
@@ -36,9 +36,9 @@ gauge.updatePercent(30); //animate the gauge to 30%
 ```
 
 To see the gauge in action and to use a UI to create a configured
-gauge of your own, visit http://www.fabledweb.com/html5-canvas-gauge.html
+gauge of your own, visit [fabledweb.com/html5-canvas-gauge.html](http://www.fabledweb.com/html5-canvas-gauge.html)
 
-=== Compatibility for that one annoying browser
+### Compatibility for that one annoying browser
 
 Don't forget to use [explorercanvas](http://code.google.com/p/explorercanvas/)
 so that this will work in browsers that don't support the HTML5 Canvas (I'm looking at you IE).
