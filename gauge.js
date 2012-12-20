@@ -37,12 +37,21 @@
 			gauge_scale: 1,
 			animation_duration: 550
 		};
-		this._property_list= Object.keys(properties);
+		//naive Object.keys shim, but I know what the object looks like (it's right above here)
+		var objectKeys= Object.keys || function(o) {var result = [];for (var name in o) {result.push(name);}return result;};
+		this._property_list= objectKeys(properties);
 		//set object properties based on options and defaults
 		for(var k in properties) {
 			this[k]= options[k] || properties[k];
 		}
 		this.canvas= options.canvas;
+		//var G_vmlCanvasManager;
+		//if (G_vmlCanvasManager != undefined) { // ie IE
+		//	G_vmlCanvasManager.initElement(this.canvas);
+		//}
+
+
+		this.context= this.canvas.getContext("2d");
 		this._percent= options.percent || 0;
 		this._target_percent= this._percent;
 
@@ -120,7 +129,6 @@
 
 	Gauge.prototype.render= function() {
 		var canvas= this.canvas;
-		this.context = (this.context ? this.context : canvas.getContext("2d"));
 		var context= this.context;
 		context.save(); //save original state of context to that it can be restore after rendering
 
@@ -158,12 +166,13 @@
 
 		return true;
 	};
-	Gauge.prototype.updatePercent= function(percent) {
+	Gauge.prototype.updatePercent= function(percent, options) {
 		var _this= this;
 		this._target_percent= percent;
+		options= options || {};
 
-		if(_this.animation_duration) {
-			var duration= _this.animation_duration;
+		var duration= ('animation_duration' in options) ? options.animation_duration : _this.animation_duration;
+		if(duration) {
 			var lastUpdate= Date.now();
 			var start= this._percent;
 			var end= this._target_percent;
