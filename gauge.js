@@ -45,10 +45,11 @@
 			this[k]= options[k] || properties[k];
 		}
 		this.canvas= options.canvas;
-		//var G_vmlCanvasManager;
-		//if (G_vmlCanvasManager != undefined) { // ie IE
-		//	G_vmlCanvasManager.initElement(this.canvas);
-		//}
+		
+		// handle IE <9 (needs excanvas)
+		if (typeof(G_vmlCanvasManager) != 'undefined' && G_vmlCanvasManager != null) {
+			G_vmlCanvasManager.initElement(this.canvas);
+		}
 
 
 		this.context= this.canvas.getContext("2d");
