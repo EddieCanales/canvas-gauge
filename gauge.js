@@ -174,13 +174,13 @@
 
 		var duration= ('animation_duration' in options) ? options.animation_duration : _this.animation_duration;
 		if(duration) {
-			var lastUpdate= Date.now();
+			var lastUpdate= new Date().getTime();
 			var start= this._percent;
 			var end= this._target_percent;
 			var change_per_ms= (end - start)/duration;
 			var increasing= change_per_ms > 0 ? 1 : 0;
 			var update= function() {
-				var now= Date.now();
+				var now= new Date().getTime();
 				var elapsed= now - lastUpdate;
 				_this._percent+= elapsed*change_per_ms;
 				lastUpdate= now;
